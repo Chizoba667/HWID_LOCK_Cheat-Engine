@@ -1,0 +1,8 @@
+local commandPrompt = assert(io.popen("wmic csproduct get uuid"))
+local returnString = commandPrompt :read'*a'
+commandPrompt:close()
+local newString = string.sub(returnString,41,76) -- cut the string so that it only contains the ID
+if newString ~= "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF" then -- compare userID with the ID that the hack should work on
+messageDialog("You do not have permission to run the trainer.",1)
+CloseCE()
+end
